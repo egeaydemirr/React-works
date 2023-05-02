@@ -2,27 +2,16 @@ import React from "react";
 import "./App.css";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-
-const Button = styled.button`
-  padding: 8px;
-  background-color: #4e47d1;
-  border-radius: 16px;
-  color: black;
-  width: 120px;
-  text-align: center;
-  box-shadow: 3px 3px 8px #888888;
-  font-weight: bold;
-  &:hover {
-    color: white;
-  }
-`;
+import { Button } from "@mui/material";
 
 const PokemonRow = ({ pokemon, onSelect }) => (
   <tr>
     <td>{pokemon.name.english}</td>
     <td>{pokemon.type.join(", ")}</td>
     <td>
-      <Button onClick={() => onSelect(pokemon)}>Select!</Button>
+      <Button variant="contained" onClick={() => onSelect(pokemon)}>
+        Select!
+      </Button>
     </td>
   </tr>
 );
