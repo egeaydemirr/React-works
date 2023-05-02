@@ -1,13 +1,28 @@
 import React from "react";
 import "./App.css";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+
+const Button = styled.button`
+  padding: 8px;
+  background-color: #4e47d1;
+  border-radius: 16px;
+  color: black;
+  width: 120px;
+  text-align: center;
+  box-shadow: 3px 3px 8px #888888;
+  font-weight: bold;
+  &:hover {
+    color: white;
+  }
+`;
 
 const PokemonRow = ({ pokemon, onSelect }) => (
   <tr>
     <td>{pokemon.name.english}</td>
     <td>{pokemon.type.join(", ")}</td>
     <td>
-      <button onClick={() => onSelect(pokemon)}>Select!</button>
+      <Button onClick={() => onSelect(pokemon)}>Select!</Button>
     </td>
   </tr>
 );
@@ -49,6 +64,26 @@ PokemonInfo.propTypes = {
     Speed: PropTypes.number.isRequired,
   }),
 };
+const Title = styled.h1`
+  text-align: center;
+`;
+
+const Container = styled.div`
+  margin: auto;
+  width: 800px;
+  padding-top: 1rem;
+`;
+const TwoColumnLayout = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-column-gap: 1rem;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  font-size: x-large;
+  padding: 0.2rem;
+`;
 
 function App() {
   const [filter, setFilter] = React.useState("");
@@ -62,23 +97,12 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        margin: "auto",
-        width: 800,
-        paddingTop: "1rem",
-      }}
-    >
-      <h1 className="title">Pokemon Search</h1>
+    <Container>
+      <Title>Pokemon Search</Title>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "70% 30%",
-        }}
-      >
+      <TwoColumnLayout>
         <div>
-          <input value={filter} onChange={e => setFilter(e.target.value)} />
+          <Input value={filter} onChange={e => setFilter(e.target.value)} />
           <table width="100%">
             <thead>
               <tr>
@@ -105,8 +129,8 @@ function App() {
           </table>
         </div>
         {selectPokemon && <PokemonInfo {...selectPokemon} />}
-      </div>
-    </div>
+      </TwoColumnLayout>
+    </Container>
   );
 }
 
