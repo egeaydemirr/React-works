@@ -1,8 +1,13 @@
-.title{
+.title {
   text-align: center;
 }
 
-th{
+th {
   text-align: left;
   font-size: x-large;
+}
+input {
+  width: 100%;
+  font-size: x-large;
+  padding: 0.2rem;
 }
